@@ -1,0 +1,45 @@
+07. Sales Person
+Easy
+Topics
+premium lock icon
+Companies
+Hint
+SQL Schema
+Pandas Schema
+Table: SalesPerson
+
++-----------------+---------+
+| Column Name     | Type    |
++-----------------+---------+
+| sales_id        | int     |
+| name            | varchar |
+| salary          | int     |
+| commission_rate | int     |
+| hire_date       | date    |
++-----------------+---------+
+sales_id is the primary key (column with unique values) for this table.
+Each row of this table indicates the name and the ID of a salesperson alongside their salary, commission rate, and hire date.
+ 
+
+Table: Company
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| com_id      | int     |
+| name        | varchar |
+| city        | varchar |
++-------------+---------+
+com_id is the primary key (column with unique values) for this table.
+Each row of this table indicates the name and the ID of a company and the city in which the company is located.
+ 
+
+ -- Write your PostgreSQL query statement below
+SELECT name FROM SalesPerson
+WHERE sales_id NOT IN(
+SELECT sales_id 
+FROM Orders o
+JOIN Company c
+ON o.com_id = c.com_id
+WHERE c.name = 'RED'
+)
